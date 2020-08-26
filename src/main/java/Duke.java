@@ -23,24 +23,40 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
 
-        // Creating a task list
+        // Create a to do list
         String[] toDoList = new String[100];
         int taskNumber = 0;
 
+        // Create a task list
+        Task[] taskList = new Task[100];
+
         while (!userInput.equals("bye")) {
-            //Add to do list
-            if(!userInput.equals("list")) {
-                toDoList[taskNumber] = userInput;
-                taskNumber++;
-                System.out.println(line + "\n added: " + userInput + '\n' + line);
-            }
-            // Print out to do list
-            if(userInput.equals("list") || userInput.equals("List")) {
-                System.out.println(line);
-                for (int i = 1; i <= taskNumber; i++) {
-                    System.out.println(" " + i + ". " + toDoList[i-1] );
+            // Create a string array to split user input into words
+            String[] words = userInput.split(" ");
+
+            // Mark Task as Done
+            if(words[0].equals("done") || words[0].equals("Done")) {
+                int taskId = Integer.parseInt(words[1]);
+                Task completedTask = taskList[taskId];
+                completedTask.markAsDone();
+                System.out.println(line + "\n Nice! I've marked this task as done:\n " +
+                        completedTask.getStatusIcon() + " " + completedTask.getDescription() + '\n' + line);
+            } else if(userInput.equals("list") || userInput.equals("List")) {
+                // Print out to do list
+                System.out.println(line + "\n Here are tasks in your list:");
+                for (int i = 1; i <= Task.getTaskCount(); i++) {
+                    System.out.println(" " + i + ". " +
+                            taskList[i].getStatusIcon() +
+                            " " + taskList[i].getDescription());
                 }
+
                 System.out.println(line);
+
+            } else {
+                // Add task to to do list
+                Task newTask = new Task(userInput);
+                taskList[newTask.getTaskCount()] = newTask;
+                System.out.println(line + "\n added: " + userInput + '\n' + line);
             }
 
             userInput = input.nextLine();
