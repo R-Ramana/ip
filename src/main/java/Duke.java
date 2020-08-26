@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import ip.task.Task;
 
 public class Duke {
     public static void main(String[] args) {
@@ -49,16 +50,13 @@ public class Duke {
                             taskList[i].getStatusIcon() +
                             " " + taskList[i].getDescription());
                 }
-
                 System.out.println(line);
-
             } else {
                 // Add task to to do list
                 Task newTask = new Task(userInput);
                 taskList[newTask.getTaskCount()] = newTask;
                 System.out.println(line + "\n added: " + userInput + '\n' + line);
             }
-
             userInput = input.nextLine();
         }
 

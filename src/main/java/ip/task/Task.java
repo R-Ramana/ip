@@ -1,3 +1,5 @@
+package ip.task;
+
 public class Task {
     protected String description;
     protected boolean isDone;
@@ -9,8 +11,7 @@ public class Task {
 
     public Task(String description) {
         this.description = description;
-        taskCount++;
-        taskID = taskCount;
+        this.taskID = ++taskCount;
         this.isDone = false;
     }
 
