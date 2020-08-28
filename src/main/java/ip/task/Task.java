@@ -4,7 +4,7 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
-    //
+    // Track the individual id of the tasks
     protected int taskID = 0;
     // Track the number of tasks
     private static int taskCount = 0;
@@ -39,5 +39,11 @@ public class Task {
         return (isDone ? "[\u2713]" : "[\u2718]"); //return tick or X symbols
     }
 
-    //...
+    public String getTaskIcon() {
+        return (isDone ? "[\u2713]" : "[\u2718]"); //return tick or X symbols
+    }
+
+    public String toString() {
+        return this.getStatusIcon() + " " + this.getDescription();
+    }
 }
