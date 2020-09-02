@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import ip.response.Response;
 import ip.task.Task;
 import ip.task.Deadline;
 import ip.task.Event;
@@ -7,34 +8,18 @@ import ip.task.Todo;
 
 public class Duke {
     public static void main(String[] args) {
-        String logo = " ____   ____    _____   _____   _    _  " + System.lineSeparator()
-                + "|  __| |  _ \\  |_   _| |_   _| | |  | | " + System.lineSeparator()
-                + "| |__  | | | |   | |     | |   | |__| | " + System.lineSeparator()
-                + "|  __| | | | |   | |     | |   |  __  | " + System.lineSeparator()
-                + "| |__  | |_| |  _| |_    | |   | |  | | " + System.lineSeparator()
-                + "|____| |____/  |_____|   |_|   |_|  |_| ";
-        System.out.println(logo);
-
-        String line = "____________________________________________________________\n";
-        String greeting = line +
-                " Hello, I'm Edith!\n" +
-                " I am a chatbot and I am here to assist you.\n" +
-                " What can I help you with?\n" +
-                line;
-
-        System.out.println(greeting);
+        // Print Welcome Message
+        Response.printWelcomeMessage();
 
         // Create scanner class to take in new user inputs
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
 
-        // Create a to do list
-        String[] toDoList = new String[100];
-        int taskNumber = 0;
-
-        // Create a task list
+        // Create Task List
         Task[] taskList = new Task[100];
 
+
+        // To run the programme until user inputs "bye" (ends the programme)
         while (!userInput.equals("bye")) {
             // Create a string array to split user input into words
             String[] words = userInput.split(" ");
@@ -51,23 +36,30 @@ public class Duke {
                 int taskId = Integer.parseInt(words[1]);
                 Task completedTask = taskList[taskId];
                 completedTask.markAsDone();
-                System.out.println(line + "\n Nice! I've marked this task as done:\n " +
-                        completedTask.toString() + '\n' + line);
+
+                Response.horizontalLine();
+                System.out.println(" Nice! I've marked this task as done:\n " +
+                        completedTask.toString());
+                Response.horizontalLine();
                 break;
             // Print out to do list
             case "list":
-                System.out.println(line + "\n Here are tasks in your list:");
+                Response.horizontalLine();
+                System.out.println(" Here are tasks in your list:");
                 for (int i = 1; i <= Task.getTaskCount(); i++) {
                     System.out.println(" " + i + ". " + taskList[i].toString());
                 }
-                System.out.println(line);
+                Response.horizontalLine();
                 break;
             // Add a to do task
             case "todo":
                 Todo newTask = new Todo(description);
                 taskList[newTask.getTaskCount()] = newTask;
-                System.out.println(line + "\n Got it. I've added this task:\n" + newTask + '\n');
-                System.out.println("Now you have " + newTask.getTaskId() + " tasks in the list.\n" + line);
+
+                Response.horizontalLine();
+                System.out.println(" Got it. I've added this task:\n" + newTask + '\n');
+                System.out.println("Now you have " + newTask.getTaskId() + " tasks in the list.");
+                Response.horizontalLine();
                 break;
             // Add an event task
             case "event":
@@ -75,8 +67,11 @@ public class Duke {
                 String eventTime =  userInput.substring(timePosition);
                 Event newEvent = new Event(eventAndTime, eventTime);
                 taskList[newEvent.getTaskCount()] = newEvent;
-                System.out.println(line + "\n Got it. I've added this task:\n" + newEvent + '\n');
-                System.out.println("Now you have " + newEvent.getTaskId() + " tasks in the list.\n" + line);
+
+                Response.horizontalLine();
+                System.out.println(" Got it. I've added this task:\n" + newEvent + '\n');
+                System.out.println("Now you have " + newEvent.getTaskId() + " tasks in the list.");
+                Response.horizontalLine();
                 break;
             // Add a deadline task
             case "deadline":
@@ -84,15 +79,17 @@ public class Duke {
                 String deadline =  userInput.substring(timePosition);
                 Deadline newDeadline = new Deadline(deadlineDescription, deadline);
                 taskList[newDeadline.getTaskCount()] = newDeadline;
-                System.out.println(line + "\n Got it. I've added this task:\n" + newDeadline + '\n');
-                System.out.println("Now you have " + newDeadline.getTaskId() + " tasks in the list.\n" + line);
+
+                Response.horizontalLine();
+                System.out.println(" Got it. I've added this task:\n" + newDeadline + '\n');
+                System.out.println(" Now you have " + newDeadline.getTaskId() + " tasks in the list.");
+                Response.horizontalLine();
                 break;
             }
             userInput = input.nextLine();
         }
 
-        String bye = line + " Bye. I hope I have helped you. See you soon!\n" + line;
-        System.out.println(bye);
-
+        // Print Farewell Message
+        Response.printFarewellMessage();
     }
 }
