@@ -1,6 +1,10 @@
 package ip.task;
 
 public class Task {
+    // Tick and cross symbols
+    public final static String tick = "[✓]";
+    public final static String cross = "[✘]";
+
     protected String description;
     protected boolean isDone;
 
@@ -20,6 +24,11 @@ public class Task {
         return taskID;
     }
 
+    public static Task getCompletedTask(String[] words, Task[] taskList) {
+        int taskId = Integer.parseInt(words[1]);
+        return taskList[taskId];
+    }
+
     // Return total number of tasks
     public static int getTaskCount() {
         return taskCount;
@@ -36,11 +45,7 @@ public class Task {
     }
 
     public String getStatusIcon() {
-        return (isDone ? "[\u2713]" : "[\u2718]"); //return tick or X symbols
-    }
-
-    public String getTaskIcon() {
-        return (isDone ? "[\u2713]" : "[\u2718]"); //return tick or X symbols
+        return (isDone ? tick : cross); //return tick or X symbols
     }
 
     public String toString() {

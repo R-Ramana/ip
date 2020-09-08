@@ -5,3 +5,6 @@ list
 done 3
 list
 bye
+
+event CS2113 Tutorial /at Thu 2-4pm
+deadline submit TP direction on teammates /by Today

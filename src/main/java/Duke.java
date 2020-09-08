@@ -1,9 +1,6 @@
 import java.util.Scanner;
 import ip.response.Response;
 import ip.task.Task;
-import ip.task.Deadline;
-import ip.task.Event;
-import ip.task.Todo;
 
 
 public class Duke {
@@ -25,65 +22,36 @@ public class Duke {
             String[] words = userInput.split(" ");
 
             // Get description and schedule of task (exclude commands)
-            int descriptionPosition = userInput.indexOf(" ") + 1;
-            int timePosition = userInput.indexOf("/") + 4;
-            String description = userInput.substring(descriptionPosition);
+            int descriptionPosition = Response.getDescriptionPosition(userInput);
+            int timePosition = Response.getTimePosition(userInput);
+            String description = Response.getDescription(userInput, descriptionPosition);
 
 
             switch(words[0]) {
             // Mark Task as Done
             case "done":
-                int taskId = Integer.parseInt(words[1]);
-                Task completedTask = taskList[taskId];
-                completedTask.markAsDone();
-
-                Response.horizontalLine();
-                System.out.println(" Nice! I've marked this task as done:\n " +
-                        completedTask.toString());
-                Response.horizontalLine();
+                Task completedTask = Task.getCompletedTask(words, taskList);
+                Response.printDoneMessage(completedTask);
                 break;
+
             // Print out to do list
             case "list":
-                Response.horizontalLine();
-                System.out.println(" Here are tasks in your list:");
-                for (int i = 1; i <= Task.getTaskCount(); i++) {
-                    System.out.println(" " + i + ". " + taskList[i].toString());
-                }
-                Response.horizontalLine();
+                Response.printListMessage(taskList);
                 break;
+
             // Add a to do task
             case "todo":
-                Todo newTask = new Todo(description);
-                taskList[newTask.getTaskCount()] = newTask;
-
-                Response.horizontalLine();
-                System.out.println(" Got it. I've added this task:\n" + newTask + '\n');
-                System.out.println("Now you have " + newTask.getTaskId() + " tasks in the list.");
-                Response.horizontalLine();
+                Response.printTodoMessage(description, taskList);
                 break;
+
             // Add an event task
             case "event":
-                String eventAndTime = userInput.substring(descriptionPosition, timePosition - 4);
-                String eventTime =  userInput.substring(timePosition);
-                Event newEvent = new Event(eventAndTime, eventTime);
-                taskList[newEvent.getTaskCount()] = newEvent;
-
-                Response.horizontalLine();
-                System.out.println(" Got it. I've added this task:\n" + newEvent + '\n');
-                System.out.println("Now you have " + newEvent.getTaskId() + " tasks in the list.");
-                Response.horizontalLine();
+                Response.printEventMessage(userInput, descriptionPosition, timePosition, taskList);
                 break;
+
             // Add a deadline task
             case "deadline":
-                String deadlineDescription = userInput.substring(descriptionPosition, timePosition - 4);
-                String deadline =  userInput.substring(timePosition);
-                Deadline newDeadline = new Deadline(deadlineDescription, deadline);
-                taskList[newDeadline.getTaskCount()] = newDeadline;
-
-                Response.horizontalLine();
-                System.out.println(" Got it. I've added this task:\n" + newDeadline + '\n');
-                System.out.println(" Now you have " + newDeadline.getTaskId() + " tasks in the list.");
-                Response.horizontalLine();
+                Response.printDeadlineMessage(userInput, descriptionPosition, timePosition, taskList);
                 break;
             }
             userInput = input.nextLine();
