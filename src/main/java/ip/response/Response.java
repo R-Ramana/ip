@@ -77,7 +77,10 @@ public class Response {
     }
 
     // Print to do response
-    public static void printTodoMessage(String description, Task[] taskList) {
+    public static void printTodoMessage(String userInput, int descriptionPosition, Task[] taskList) {
+
+        String todoDescription = userInput.substring(userInput.indexOf("todo "), userInput.length());
+        String description = todoDescription.substring(5);
         Todo newTask = new Todo(description);
         taskList[newTask.getTaskCount()] = newTask;
 
@@ -89,9 +92,9 @@ public class Response {
 
     // Print event response
     public static void printEventMessage(String userInput, int descriptionPosition, int timePosition, Task[] taskList) {
-        String eventAndTime = userInput.substring(descriptionPosition, timePosition - 4);
+        String event = userInput.substring(descriptionPosition, timePosition - 4);
         String eventTime =  userInput.substring(timePosition);
-        Event newEvent = new Event(eventAndTime, eventTime);
+        Event newEvent = new Event(event, eventTime);
         taskList[newEvent.getTaskCount()] = newEvent;
 
         printHorizontalLine();
