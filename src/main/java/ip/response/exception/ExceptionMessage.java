@@ -1,4 +1,4 @@
-package ip.response;
+package ip.response.exception;
 
 import static ip.response.Response.printHorizontalLine;
 
@@ -15,9 +15,15 @@ public class ExceptionMessage {
         printHorizontalLine();
     }
 
-    public static void printNoCommandMessage() {
+    public static void printNoCommandExceptionMessage() {
         printHorizontalLine();
         System.out.println(" Please enter an input, I cannot read minds!");
+        printHorizontalLine();
+    }
+
+    public static void printNoTaskIdMessage() {
+        printHorizontalLine();
+        System.out.println(" You got put number or not? How to clear the task as done, I not as smart as you think uh!");
         printHorizontalLine();
     }
 }

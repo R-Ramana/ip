@@ -1,7 +1,6 @@
 import java.util.Scanner;
 
-import ip.response.DukeException;
-import ip.response.ExceptionMessage;
+import ip.response.exception.ExceptionMessage;
 import ip.response.Response;
 import ip.task.Task;
 
@@ -34,7 +33,7 @@ public class Duke {
                     Task completedTask = Task.getCompletedTask(words, taskList);
                     Response.printDoneMessage(completedTask);
                 } catch (ArrayIndexOutOfBoundsException e) {
-                    System.out.println("You got put number or not? How to clear the task as done, I not as smart as you think uh!");
+                    ExceptionMessage.printNoTaskIdMessage();
                 }
                 break;
 
@@ -72,7 +71,7 @@ public class Duke {
 
             // Empty commands
             case "":
-                ExceptionMessage.printNoCommandMessage();
+                ExceptionMessage.printNoCommandExceptionMessage();
                 break;
 
             // Other random commands
