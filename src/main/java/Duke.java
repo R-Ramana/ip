@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import ip.response.exception.ExceptionMessage;
@@ -7,6 +8,7 @@ import ip.task.Task;
 
 public class Duke {
     public static void main(String[] args) {
+
         // Print Welcome Message
         Response.printWelcomeMessage();
 
@@ -15,7 +17,7 @@ public class Duke {
         String userInput = input.nextLine();
 
         // Create Task List
-        Task[] taskList = new Task[100];
+        ArrayList<Task> taskList = new ArrayList<>();
 
         // To run the programme until user inputs "bye" (ends the programme)
         while (!userInput.equals("bye")) {

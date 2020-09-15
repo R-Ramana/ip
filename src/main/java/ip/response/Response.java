@@ -5,6 +5,10 @@ import ip.task.Event;
 import ip.task.Task;
 import ip.task.Todo;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Response {
     // Horizontal line
     public static void printHorizontalLine() {
@@ -67,22 +71,23 @@ public class Response {
     }
 
     // Print list response
-    public static void printListMessage(Task[] taskList) {
+    public static void printListMessage(ArrayList<Task> taskList) {
         printHorizontalLine();
-        System.out.println(" Here are tasks in your list:");
-        for (int i = 1; i <= Task.getTaskCount(); i++) {
-            System.out.println(" " + i + ". " + taskList[i].toString());
+        System.out.println(" Here are tasks in your list:" + taskList.size());
+        for (int i = 0; i < taskList.size(); i++) {
+            System.out.println(" " + (i+1) + "." + taskList.get(i).toString() );
         }
         printHorizontalLine();
     }
 
     // Print to do response
-    public static void printTodoMessage(String userInput, int descriptionPosition, Task[] taskList) {
+    public static void printTodoMessage(String userInput, int descriptionPosition, ArrayList taskList) {
 
         String todoDescription = userInput.substring(userInput.indexOf("todo "), userInput.length());
         String description = todoDescription.substring(5);
         Todo newTask = new Todo(description);
-        taskList[newTask.getTaskCount()] = newTask;
+        taskList.add(newTask);
+        int taskCount = Todo.getTaskCount();
 
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + newTask + '\n');
@@ -91,27 +96,29 @@ public class Response {
     }
 
     // Print event response
-    public static void printEventMessage(String userInput, int descriptionPosition, int timePosition, Task[] taskList) {
+    public static void printEventMessage(String userInput, int descriptionPosition, int timePosition, ArrayList taskList) {
         String event = userInput.substring(descriptionPosition, timePosition - 4);
         String eventTime =  userInput.substring(timePosition);
         Event newEvent = new Event(event, eventTime);
-        taskList[newEvent.getTaskCount()] = newEvent;
+        taskList.add(newEvent);
+        int taskCount = Event.getTaskCount();
 
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + newEvent + '\n');
-        System.out.println("Now you have " + newEvent.getTaskId() + " tasks in the list.");
+        System.out.println("Now you have " + taskCount + " tasks in the list.");
         printHorizontalLine();
     }
 
-    public static void printDeadlineMessage(String userInput, int descriptionPosition, int timePosition, Task[] taskList) {
+    public static void printDeadlineMessage(String userInput, int descriptionPosition, int timePosition, ArrayList taskList) {
         String deadlineDescription = userInput.substring(descriptionPosition, timePosition - 4);
         String deadline =  userInput.substring(timePosition);
         Deadline newDeadline = new Deadline(deadlineDescription, deadline);
-        taskList[newDeadline.getTaskCount()] = newDeadline;
+        taskList.add(newDeadline);
+        int taskCount = Deadline.getTaskCount();
 
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + newDeadline + '\n');
-        System.out.println(" Now you have " + newDeadline.getTaskId() + " tasks in the list.");
+        System.out.println(" Now you have " + taskCount + " tasks in the list.");
         printHorizontalLine();
     }
 }
