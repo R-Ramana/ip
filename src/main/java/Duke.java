@@ -71,6 +71,16 @@ public class Duke {
                 }
                 break;
 
+            // Delete task entries
+            case "delete":
+                try {
+                    Task deletedTask = Task.getDeletedTask(words, taskList);
+                    Response.printDeleteMessage(deletedTask, taskList);
+                } catch (IndexOutOfBoundsException e) { // add more catch blocks here
+                    ExceptionMessage.printNoDescriptionExceptionMessage();
+                }
+                break;
+
             // Empty commands
             case "":
                 ExceptionMessage.printNoCommandExceptionMessage();

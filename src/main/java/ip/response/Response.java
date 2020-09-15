@@ -73,7 +73,7 @@ public class Response {
     // Print list response
     public static void printListMessage(ArrayList<Task> taskList) {
         printHorizontalLine();
-        System.out.println(" Here are tasks in your list:" + taskList.size());
+        System.out.println(" Here are tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println(" " + (i+1) + "." + taskList.get(i).toString() );
         }
@@ -119,6 +119,17 @@ public class Response {
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + newDeadline + '\n');
         System.out.println(" Now you have " + taskCount + " tasks in the list.");
+        printHorizontalLine();
+    }
+
+    // Delete task
+    public static void printDeleteMessage(Task deletedTask, ArrayList<Task> taskList) {
+        int taskId = deletedTask.getTaskId();
+        deletedTask.deleteTask(taskId, taskList);
+        printHorizontalLine();
+        System.out.println(" Noted. I've removed this task:\n " +
+                deletedTask.toString());
+        System.out.println("");
         printHorizontalLine();
     }
 }

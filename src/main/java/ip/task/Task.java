@@ -26,13 +26,19 @@ public class Task {
         return taskID;
     }
 
-    public ArrayList deleteTask(int id, ArrayList taskList) {
+    public Task deleteTask(int id, ArrayList<Task> taskList) {
+        Task task = taskList.get(id-1);
         taskList.remove(id-1);
         taskCount--;
-        return taskList;
+        return task;
     }
 
     public static Task getCompletedTask(String[] words, ArrayList taskList) {
+        int taskId = Integer.parseInt(words[1]);
+        return (Task) taskList.get(taskId - 1);
+    }
+
+    public static Task getDeletedTask(String[] words, ArrayList taskList) {
         int taskId = Integer.parseInt(words[1]);
         return (Task) taskList.get(taskId - 1);
     }
