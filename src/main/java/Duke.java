@@ -29,7 +29,7 @@ public class Duke {
         // Create scanner class to take in new user inputs
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
-        
+
         // To run the programme until user inputs "bye" (ends the programme)
         while (!userInput.equals("bye")) {
             // Create a string array to split user input into words

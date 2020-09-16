@@ -143,7 +143,7 @@ public class Response {
         printHorizontalLine();
         System.out.println(" Noted. I've removed this task:\n " +
                 deletedTask.toString());
-        System.out.println("");
+        System.out.println(" Now you have " + taskList.size() + " tasks in the list.");
         printHorizontalLine();
     }
 }

@@ -4,5 +4,6 @@ todo borrow book
 list
 done 3
 list
-remove 1
+delete 1
+list
 bye
