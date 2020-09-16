@@ -1,0 +1,6 @@
+ [T][✘] borrow book
+ [T][✘] borrow book
+ [T][✘] borrow book
+ [T][✘] borrow book
+ [E][✘] CS2113 Tutorial (at: Thu 2-4pm)
+ [D][✘] submit TP direction on teammates (by: Today)

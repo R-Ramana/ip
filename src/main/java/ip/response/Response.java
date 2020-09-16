@@ -1,5 +1,6 @@
 package ip.response;
 
+import ip.filemanager.FileManager;
 import ip.task.Deadline;
 import ip.task.Event;
 import ip.task.Task;
@@ -70,9 +71,10 @@ public class Response {
     public static void printListMessage(Task[] taskList) {
         printHorizontalLine();
         System.out.println(" Here are tasks in your list:");
-        for (int i = 1; i <= Task.getTaskCount(); i++) {
-            System.out.println(" " + i + ". " + taskList[i].toString());
-        }
+//        for (int i = 1; i <= Task.getTaskCount(); i++) {
+//            System.out.println(" " + i + ". " + taskList[i].toString());
+//        }
+        FileManager.readFile();
         printHorizontalLine();
     }
 
