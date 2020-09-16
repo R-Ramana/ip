@@ -7,6 +7,9 @@ import ip.task.Task;
 
 
 public class Duke {
+    // Create Task List
+    public static final ArrayList<Task> taskList = new ArrayList<>();
+
     public static void main(String[] args) {
 
         // Print Welcome Message
@@ -15,9 +18,6 @@ public class Duke {
         // Create scanner class to take in new user inputs
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
-
-        // Create Task List
-        ArrayList<Task> taskList = new ArrayList<>();
 
         // To run the programme until user inputs "bye" (ends the programme)
         while (!userInput.equals("bye")) {
@@ -74,8 +74,8 @@ public class Duke {
             // Delete task entries
             case "delete":
                 try {
-                    Task deletedTask = Task.getDeletedTask(words, taskList);
-                    Response.printDeleteMessage(deletedTask, taskList);
+                    //Task deletedTask = Task.getDeletedTask(words, taskList);
+                    Response.printDeleteMessage(words[1], taskList);
                 } catch (IndexOutOfBoundsException e) { // add more catch blocks here
                     ExceptionMessage.printNoDescriptionExceptionMessage();
                 }

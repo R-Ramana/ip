@@ -87,11 +87,10 @@ public class Response {
         String description = todoDescription.substring(5);
         Todo newTask = new Todo(description);
         taskList.add(newTask);
-        int taskCount = Todo.getTaskCount();
 
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + newTask + '\n');
-        System.out.println("Now you have " + newTask.getTaskId() + " tasks in the list.");
+        System.out.println("Now you have " + taskList.size()+ " tasks in the list.");
         printHorizontalLine();
     }
 
@@ -101,11 +100,10 @@ public class Response {
         String eventTime =  userInput.substring(timePosition);
         Event newEvent = new Event(event, eventTime);
         taskList.add(newEvent);
-        int taskCount = Event.getTaskCount();
 
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + newEvent + '\n');
-        System.out.println("Now you have " + taskCount + " tasks in the list.");
+        System.out.println("Now you have " + taskList.size() + " tasks in the list.");
         printHorizontalLine();
     }
 
@@ -114,18 +112,18 @@ public class Response {
         String deadline =  userInput.substring(timePosition);
         Deadline newDeadline = new Deadline(deadlineDescription, deadline);
         taskList.add(newDeadline);
-        int taskCount = Deadline.getTaskCount();
 
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + newDeadline + '\n');
-        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+        System.out.println(" Now you have " + taskList.size() + " tasks in the list.");
         printHorizontalLine();
     }
 
     // Delete task
-    public static void printDeleteMessage(Task deletedTask, ArrayList<Task> taskList) {
-        int taskId = deletedTask.getTaskId();
-        deletedTask.deleteTask(taskId, taskList);
+    public static void printDeleteMessage(String number, ArrayList<Task> taskList) {
+        int taskId = Integer.parseInt(number);
+        Task deletedTask = taskList.get(taskId - 1);
+        taskList.remove(deletedTask);
         printHorizontalLine();
         System.out.println(" Noted. I've removed this task:\n " +
                 deletedTask.toString());
