@@ -58,6 +58,7 @@ public class Duke {
             // Print out to do list
             case "list":
                 Response.printListMessage(taskList);
+                FileManager.createFile();
                 break;
 
             // Add a to do task

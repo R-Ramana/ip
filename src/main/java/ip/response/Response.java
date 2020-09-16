@@ -57,7 +57,7 @@ public class Response {
 
     // Get Description Position
     public static int getReadDescriptionPosition(String line) {
-        return line.indexOf(" ", line.indexOf(" ")) + 1;
+        return line.indexOf(" ", line.indexOf(" "));
     }
 
     // Get Time Position (duration start and end)
@@ -85,6 +85,11 @@ public class Response {
         System.out.println(" Here are tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println(" " + (i+1) + "." + taskList.get(i).toString() );
+            if(i == 0) {
+                FileManager.overwriteFile(taskList.get(i).toString());
+            } else {
+                FileManager.writeToFile(taskList.get(i).toString());
+            }
         }
         printHorizontalLine();
     }

@@ -54,14 +54,16 @@ public class FileManager {
                     taskList.add(newTask);
                 }
                 if(line.contains("[E]")) {
-                    String event = line.substring(descriptionPosition, timePosition - 4);
-                    String eventTime =  line.substring(timePosition);
+                    String description = line.substring(7);
+                    String event = description.substring(descriptionPosition, timePosition - 11);
+                    String eventTime =  line.substring(timePosition, line.length() - 1);
                     Event newEvent = new Event(event, eventTime);
                     taskList.add(newEvent);
                 }
                 if(line.contains("[D]")) {
-                    String deadlineDescription = line.substring(descriptionPosition, timePosition - 4);
-                    String deadline =  line.substring(timePosition);
+                    String description = line.substring(7);
+                    String deadlineDescription = description.substring(descriptionPosition, timePosition - 11);
+                    String deadline =  line.substring(timePosition, line.length() - 1);
                     Deadline newDeadline = new Deadline(deadlineDescription, deadline);
                     taskList.add(newDeadline);
                 }
@@ -77,6 +79,21 @@ public class FileManager {
     public static void writeToFile(String textInput) {
         try {
             FileWriter writer = new FileWriter(fileName, true);
+            BufferedWriter bufferedWriter = new BufferedWriter(writer);
+
+            bufferedWriter.write(textInput);
+            bufferedWriter.newLine();
+
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void overwriteFile(String textInput) {
+        try {
+            FileWriter writer = new FileWriter(fileName);
             BufferedWriter bufferedWriter = new BufferedWriter(writer);
 
             bufferedWriter.write(textInput);
