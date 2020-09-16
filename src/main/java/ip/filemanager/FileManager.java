@@ -1,6 +1,13 @@
 package ip.filemanager;
 
+import ip.response.Response;
+import ip.task.Deadline;
+import ip.task.Event;
+import ip.task.Task;
+import ip.task.Todo;
+
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class FileManager {
@@ -26,17 +33,40 @@ public class FileManager {
 
     // @@author {R-Ramana}-reused
     // Reused from https://www.codejava.net/java-se/file-io/how-to-read-and-write-text-file-in-java with minor modifications
-    public static void readFile() {
+    public static void readFile(ArrayList<Task> taskList) {
+        // Create Task List
+
         try {
-            FileReader reader = new FileReader(fileName);
-            BufferedReader bufferedReader = new BufferedReader(reader);
+            FileReader file = new FileReader(fileName);
+            BufferedReader bufferedReader = new BufferedReader(file);
 
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
+                // System.out.println(line);
+                // Get description and schedule of task (exclude commands)
+                int descriptionPosition = Response.getReadDescriptionPosition(line);
+                int timePosition = Response.getReadTimePosition(line);
+
+                if(line.contains("[T]")) {
+                    String description = line.substring(7);
+                    Todo newTask = new Todo(description);
+                    taskList.add(newTask);
+                }
+                if(line.contains("[E]")) {
+                    String event = line.substring(descriptionPosition, timePosition - 4);
+                    String eventTime =  line.substring(timePosition);
+                    Event newEvent = new Event(event, eventTime);
+                    taskList.add(newEvent);
+                }
+                if(line.contains("[D]")) {
+                    String deadlineDescription = line.substring(descriptionPosition, timePosition - 4);
+                    String deadline =  line.substring(timePosition);
+                    Deadline newDeadline = new Deadline(deadlineDescription, deadline);
+                    taskList.add(newDeadline);
+                }
             }
-            reader.close();
+            file.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

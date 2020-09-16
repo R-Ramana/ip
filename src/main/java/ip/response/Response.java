@@ -55,6 +55,16 @@ public class Response {
         return userInput.indexOf("/") + 4;
     }
 
+    // Get Description Position
+    public static int getReadDescriptionPosition(String line) {
+        return line.indexOf(" ", line.indexOf(" ")) + 1;
+    }
+
+    // Get Time Position (duration start and end)
+    public static int getReadTimePosition(String line) {
+        return line.indexOf("(") + 4;
+    }
+
     // Get Description
     public static String getDescription(String userInput, int descriptionPosition) {
         return userInput.substring(descriptionPosition);
@@ -73,7 +83,6 @@ public class Response {
     public static void printListMessage(ArrayList<Task> taskList) {
         printHorizontalLine();
         System.out.println(" Here are tasks in your list:");
-        FileManager.readFile();
         for (int i = 0; i < taskList.size(); i++) {
             System.out.println(" " + (i+1) + "." + taskList.get(i).toString() );
         }
@@ -83,15 +92,16 @@ public class Response {
     // Print to do response
     public static void printTodoMessage(String userInput, int descriptionPosition, ArrayList taskList) {
 
-        String todoDescription = userInput.substring(userInput.indexOf("todo "), userInput.length());
+        String todoDescription = userInput.substring(userInput.indexOf("todo "));
         String description = todoDescription.substring(5);
         Todo newTask = new Todo(description);
         taskList.add(newTask);
+        FileManager.writeToFile(newTask.toString());
         int taskCount = Todo.getTaskCount();
 
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + newTask + '\n');
-        System.out.println("Now you have " + newTask.getTaskId() + " tasks in the list.");
+        System.out.println("Now you have " + taskCount + " tasks in the list.");
         printHorizontalLine();
     }
 
@@ -101,6 +111,7 @@ public class Response {
         String eventTime =  userInput.substring(timePosition);
         Event newEvent = new Event(event, eventTime);
         taskList.add(newEvent);
+        FileManager.writeToFile(newEvent.toString());
         int taskCount = Event.getTaskCount();
 
         printHorizontalLine();
@@ -114,6 +125,7 @@ public class Response {
         String deadline =  userInput.substring(timePosition);
         Deadline newDeadline = new Deadline(deadlineDescription, deadline);
         taskList.add(newDeadline);
+        FileManager.writeToFile(newDeadline.toString());
         int taskCount = Deadline.getTaskCount();
 
         printHorizontalLine();

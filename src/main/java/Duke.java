@@ -10,6 +10,10 @@ import ip.task.Task;
 
 
 public class Duke {
+
+    // Create Task List
+    public static final ArrayList<Task> taskList = new ArrayList<>();
+
     public static void main(String[] args) throws IOException {
         // Read from file
         // Solution below adapted from https://alvinalexander.com/java/java-file-exists-directory-exists/#:~:text=To%20test%20to%20see%20if,directory%20exists%2C%20and%20false%20otherwise.
@@ -17,7 +21,7 @@ public class Duke {
         file = new File(file.getCanonicalPath());
         boolean exists = file.exists();
         if(exists) {
-            FileManager.readFile();
+            FileManager.readFile(taskList);
         }
 
         // Print Welcome Message
@@ -27,8 +31,6 @@ public class Duke {
         Scanner input = new Scanner(System.in);
         String userInput = input.nextLine();
 
-        // Create Task List
-        ArrayList<Task> taskList = new ArrayList<>();
 
         // To run the programme until user inputs "bye" (ends the programme)
         while (!userInput.equals("bye")) {
@@ -46,7 +48,6 @@ public class Duke {
                     Task completedTask = Task.getCompletedTask(words, taskList);
                     Response.printDoneMessage(completedTask);
                     FileManager.createFile();
-                    FileManager.writeToFile(taskList[Task.getTaskCount()].toString());
                 } catch (ArrayIndexOutOfBoundsException e) {
                     ExceptionMessage.printNoTaskIdMessage();
                 } catch (IOException e) {
@@ -64,7 +65,6 @@ public class Duke {
                 try {
                     Response.printTodoMessage(userInput, descriptionPosition, taskList);
                     FileManager.createFile();
-                    FileManager.writeToFile(taskList[Task.getTaskCount()].toString());
                 } catch (StringIndexOutOfBoundsException e) { // add more catch blocks here
                     ExceptionMessage.printNoDescriptionExceptionMessage();
                 } catch (IOException e) {
@@ -77,7 +77,6 @@ public class Duke {
                 try {
                     Response.printEventMessage(userInput, descriptionPosition, timePosition, taskList);
                     FileManager.createFile();
-                    FileManager.writeToFile(taskList[Task.getTaskCount()].toString());
                 } catch (StringIndexOutOfBoundsException e) { // add more catch blocks here
                     ExceptionMessage.printNoDescriptionExceptionMessage();
                 } catch (IOException e) {
@@ -90,7 +89,6 @@ public class Duke {
                 try {
                     Response.printDeadlineMessage(userInput, descriptionPosition, timePosition, taskList);
                     FileManager.createFile();
-                    FileManager.writeToFile(taskList[Task.getTaskCount()].toString());
                 } catch (StringIndexOutOfBoundsException e) { // add more catch blocks here
                     ExceptionMessage.printNoDescriptionExceptionMessage();
                 } catch (IOException e) {
