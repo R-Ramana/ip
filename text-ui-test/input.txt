@@ -1,10 +1,8 @@
-event project meeting /at Mon 2-4pm
-deadline return book /by Sunday
+event CS2113 Tutorial /at Thu 2-4pm
+deadline submit TP direction on teammates /by Today
 todo borrow book
 list
 done 3
 list
+remove 1
 bye
-
-event CS2113 Tutorial /at Thu 2-4pm
-deadline submit TP direction on teammates /by Today

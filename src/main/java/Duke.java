@@ -1,5 +1,6 @@
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import ip.filemanager.FileManager;
@@ -27,7 +28,7 @@ public class Duke {
         String userInput = input.nextLine();
 
         // Create Task List
-        Task[] taskList = new Task[100];
+        ArrayList<Task> taskList = new ArrayList<>();
 
         // To run the programme until user inputs "bye" (ends the programme)
         while (!userInput.equals("bye")) {
@@ -94,6 +95,16 @@ public class Duke {
                     ExceptionMessage.printNoDescriptionExceptionMessage();
                 } catch (IOException e) {
                     ExceptionMessage.printIoExceptionMessage();
+                }
+                break;
+
+            // Delete task entries
+            case "delete":
+                try {
+                    Task deletedTask = Task.getDeletedTask(words, taskList);
+                    Response.printDeleteMessage(deletedTask, taskList);
+                } catch (IndexOutOfBoundsException e) { // add more catch blocks here
+                    ExceptionMessage.printNoDescriptionExceptionMessage();
                 }
                 break;
 
