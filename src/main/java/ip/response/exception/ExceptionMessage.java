@@ -26,4 +26,10 @@ public class ExceptionMessage {
         System.out.println(" You got put number or not? How to clear the task as done, I not as smart as you think uh!");
         printHorizontalLine();
     }
+
+    public static void printIoExceptionMessage() {
+        printHorizontalLine();
+        System.out.println(" Error writing to file!");
+        printHorizontalLine();
+    }
 }
