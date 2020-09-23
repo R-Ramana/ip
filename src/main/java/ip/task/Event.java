@@ -1,6 +1,6 @@
 package ip.task;
 
-public class Event extends Task {
+public class Event extends TaskManager {
 
     protected String startTime;
 
