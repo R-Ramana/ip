@@ -3,7 +3,7 @@ package ip.filemanager;
 import ip.response.Response;
 import ip.task.Deadline;
 import ip.task.Event;
-import ip.task.Task;
+import ip.task.TaskManager;
 import ip.task.Todo;
 
 import java.io.*;
@@ -33,7 +33,7 @@ public class FileManager {
 
     // @@author {R-Ramana}-reused
     // Reused from https://www.codejava.net/java-se/file-io/how-to-read-and-write-text-file-in-java with minor modifications
-    public static void readFile(ArrayList<Task> taskList) {
+    public static void readFile(ArrayList<TaskManager> taskList) {
         // Create Task List
 
         try {

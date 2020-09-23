@@ -1,6 +1,6 @@
 package ip.task;
 
-public class Deadline extends Task {
+public class Deadline extends TaskManager {
 
     protected String deadline;
 

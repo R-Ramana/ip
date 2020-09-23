@@ -2,7 +2,7 @@ package ip.task;
 
 import java.util.ArrayList;
 
-public class Task {
+public class TaskManager {
     // Tick and cross symbols
     public final static String tick = "[✓]";
     public final static String cross = "[✘]";
@@ -15,7 +15,7 @@ public class Task {
     // Track the number of tasks
     //private static int taskCount = 0;
 
-    public Task(String description) {
+    public TaskManager(String description) {
         this.description = description;
         //this.taskID = ++taskCount;
         this.isDone = false;
@@ -25,21 +25,22 @@ public class Task {
     /*public int getTaskId() {
         return taskID;
     }*/
-
-    public static void deleteTask(int id, ArrayList<Task> taskList) {
-        Task task = taskList.get(id);
-        taskList.remove(task);
-        //taskCount--;
+    
+    public TaskManager deleteTask(int id, ArrayList<TaskManager> taskList) {
+        TaskManager task = taskList.get(id-1);
+        taskList.remove(id-1);
+        taskCount--;
+        return task;
     }
 
-    public static Task getCompletedTask(String[] words, ArrayList taskList) {
+    public static TaskManager getCompletedTask(String[] words, ArrayList taskList) {
         int taskId = Integer.parseInt(words[1]);
-        return (Task) taskList.get(taskId - 1);
+        return (TaskManager) taskList.get(taskId - 1);
     }
 
-    public static Task getDeletedTask(String[] words, ArrayList taskList) {
+    public static TaskManager getDeletedTask(String[] words, ArrayList taskList) {
         int taskId = Integer.parseInt(words[1]);
-        return (Task) taskList.get(taskId - 1);
+        return (TaskManager) taskList.get(taskId - 1);
     }
 
     // Return total number of tasks

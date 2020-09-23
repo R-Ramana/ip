@@ -1,29 +1,29 @@
-package ip.response.exception;
+package ip.ui.exception;
 
-import static ip.response.Response.printHorizontalLine;
+import static ip.ui.Ui.printHorizontalLine;
 
 public class ExceptionMessage {
     public static void printInvalidExceptionMessage() {
         printHorizontalLine();
-        System.out.println(" Not wired to understand your command! Not as smart as you think I am :/");
+        System.out.println(" I am unable to understand your command! Please check for typos or try something else.");
         printHorizontalLine();
     }
 
     public static void printNoDescriptionExceptionMessage() {
         printHorizontalLine();
-        System.out.println(" Hello, add what? You leave description/time blank you think I know meh?");
+        System.out.println(" The description/time is missing. Please try again.");
         printHorizontalLine();
     }
 
     public static void printNoCommandExceptionMessage() {
         printHorizontalLine();
-        System.out.println(" Please enter an input, I cannot read minds!");
+        System.out.println(" Please enter an input, I cannot read minds (But I wish I could)!");
         printHorizontalLine();
     }
 
     public static void printNoTaskIdMessage() {
         printHorizontalLine();
-        System.out.println(" You got put number or not? How to clear the task as done, I not as smart as you think uh!");
+        System.out.println(" No/Invalid task ID listed. Unable to clear task.");
         printHorizontalLine();
     }
 

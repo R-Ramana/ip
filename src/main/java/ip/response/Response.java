@@ -3,47 +3,16 @@ package ip.response;
 import ip.filemanager.FileManager;
 import ip.task.Deadline;
 import ip.task.Event;
-import ip.task.Task;
+import ip.task.TaskManager;
 import ip.task.Todo;
 
 import java.util.ArrayList;
 
+import static ip.ui.Ui.printHorizontalLine;
+
 public class Response {
-    // Horizontal line
-    public static void printHorizontalLine() {
-        final int LINE_COUNT = 60;
-        String line = "-".repeat(LINE_COUNT);
-        System.out.println(line);
-    }
 
-    // Welcome Address
-    public static void printWelcomeMessage() {
-        String logo = " ____   ____    _____   _____   _    _  " + System.lineSeparator()
-                + "|  __| |  _ \\  |_   _| |_   _| | |  | | " + System.lineSeparator()
-                + "| |__  | | | |   | |     | |   | |__| | " + System.lineSeparator()
-                + "|  __| | | | |   | |     | |   |  __  | " + System.lineSeparator()
-                + "| |__  | |_| |  _| |_    | |   | |  | | " + System.lineSeparator()
-                + "|____| |____/  |_____|   |_|   |_|  |_| ";
-        System.out.println(logo);
 
-        String greeting =
-                " Hello, I'm Edith!\n" +
-                " I am a chatbot and I am here to assist you.\n" +
-                " What can I help you with?";
-
-        printHorizontalLine();
-        System.out.println(greeting);
-        printHorizontalLine();
-    }
-
-    // Farewell Address
-    public static void printFarewellMessage() {
-        String bye = "Bye. I hope I have helped you. See you soon!";
-
-        printHorizontalLine();
-        System.out.println(bye);
-        printHorizontalLine();
-    }
 
     // Get Description Position
     public static int getDescriptionPosition(String userInput) {
@@ -71,16 +40,12 @@ public class Response {
     }
 
     // Mark as done response
-    public static void printDoneMessage(Task completedTask) {
+    public static void printDoneMessage(TaskManager completedTask) {
         completedTask.markAsDone();
-        printHorizontalLine();
-        System.out.println(" Nice! I've marked this task as done:\n " +
-                completedTask.toString());
-        printHorizontalLine();
     }
 
     // Print list response
-    public static void printListMessage(ArrayList<Task> taskList) {
+    public static void printListMessage(ArrayList<TaskManager> taskList) {
         printHorizontalLine();
         System.out.println(" Here are tasks in your list:");
         for (int i = 0; i < taskList.size(); i++) {
@@ -136,10 +101,9 @@ public class Response {
     }
 
     // Delete task
-    public static void printDeleteMessage(String number, ArrayList<Task> taskList) {
-        int taskId = Integer.parseInt(number);
-        Task deletedTask = taskList.get(taskId - 1);
-        taskList.remove(deletedTask);
+    public static void printDeleteMessage(TaskManager deletedTask, ArrayList<TaskManager> taskList) {
+        int taskId = deletedTask.getTaskId();
+        deletedTask.deleteTask(taskId, taskList);
         printHorizontalLine();
         System.out.println(" Noted. I've removed this task:\n " +
                 deletedTask.toString());

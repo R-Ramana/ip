@@ -4,14 +4,20 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import ip.filemanager.FileManager;
-import ip.response.exception.ExceptionMessage;
+import ip.ui.exception.ExceptionMessage;
 import ip.response.Response;
-import ip.task.Task;
+import ip.task.TaskManager;
+import ip.ui.Ui;
 
 
 public class Duke {
+
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
+
     // Create Task List
-    public static final ArrayList<Task> taskList = new ArrayList<>();
+    public static final ArrayList<TaskManager> taskList = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
         // Read from file
@@ -24,7 +30,7 @@ public class Duke {
         }
 
         // Print Welcome Message
-        Response.printWelcomeMessage();
+        Ui.printWelcomeMessage();
 
         // Create scanner class to take in new user inputs
         Scanner input = new Scanner(System.in);
@@ -43,8 +49,8 @@ public class Duke {
             // Mark Task as Done
             case "done":
                 try {
-                    Task completedTask = Task.getCompletedTask(words, taskList);
-                    Response.printDoneMessage(completedTask);
+                    TaskManager completedTask = TaskManager.getCompletedTask(words, taskList);
+                    Ui.printDoneMessage(completedTask);
                     FileManager.createFile();
                 } catch (ArrayIndexOutOfBoundsException e) {
                     ExceptionMessage.printNoTaskIdMessage();
@@ -98,8 +104,8 @@ public class Duke {
             // Delete task entries
             case "delete":
                 try {
-                    //Task deletedTask = Task.getDeletedTask(words, taskList);
-                    Response.printDeleteMessage(words[1], taskList);
+                    TaskManager deletedTask = TaskManager.getDeletedTask(words, taskList);
+                    Response.printDeleteMessage(deletedTask, taskList);
                 } catch (IndexOutOfBoundsException e) { // add more catch blocks here
                     ExceptionMessage.printNoDescriptionExceptionMessage();
                 }
@@ -119,6 +125,6 @@ public class Duke {
         }
 
         // Print Farewell Message
-        Response.printFarewellMessage();
+        Ui.printFarewellMessage();
     }
 }
