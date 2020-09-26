@@ -1,18 +1,35 @@
 package ip.filemanager;
 
-import ip.response.Response;
+import ip.commands.AddCommand;
+import ip.commands.Command;
+import ip.parser.Parser;
 import ip.task.Deadline;
 import ip.task.Event;
-import ip.task.TaskManager;
 import ip.task.Todo;
+import ip.task.Task;
+import ip.ui.Ui;
+import ip.ui.exception.DukeException;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
 public class FileManager {
 
-    static private String fileName = "duke.txt";
+    private static String fileName;
+
+    public FileManager(String fileName) {
+        FileManager.fileName = fileName;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
 
     // @@author {R-Ramana}-reused
     // Reused from https://www.javatpoint.com/how-to-create-a-file-in-java with minor modifications
@@ -33,8 +50,7 @@ public class FileManager {
 
     // @@author {R-Ramana}-reused
     // Reused from https://www.codejava.net/java-se/file-io/how-to-read-and-write-text-file-in-java with minor modifications
-    public static void readFile(ArrayList<TaskManager> taskList) {
-        // Create Task List
+    public static void readFile(ArrayList<Task> taskList, Ui ui) {
 
         try {
             FileReader file = new FileReader(fileName);
@@ -43,33 +59,26 @@ public class FileManager {
             String line;
 
             while ((line = bufferedReader.readLine()) != null) {
-                // System.out.println(line);
-                // Get description and schedule of task (exclude commands)
-                int descriptionPosition = Response.getReadDescriptionPosition(line);
-                int timePosition = Response.getReadTimePosition(line);
+                String[] substring = line.split(" ",2);
+                if (substring[0].contains("[T]")) {
+                    new AddCommand("todo", substring[0]);
+                }
 
-                if(line.contains("[T]")) {
-                    String description = line.substring(7);
-                    Todo newTask = new Todo(description);
-                    taskList.add(newTask);
+
+                if (substring[0].contains("[E]")) {
+                    String[] eventInfo = Parser.parseEvent(substring[0]);
+                    new AddCommand("event", eventInfo[0], eventInfo[1]);
                 }
-                if(line.contains("[E]")) {
-                    String description = line.substring(7);
-                    String event = description.substring(descriptionPosition, timePosition - 11);
-                    String eventTime =  line.substring(timePosition, line.length() - 1);
-                    Event newEvent = new Event(event, eventTime);
-                    taskList.add(newEvent);
-                }
-                if(line.contains("[D]")) {
-                    String description = line.substring(7);
-                    String deadlineDescription = description.substring(descriptionPosition, timePosition - 11);
-                    String deadline =  line.substring(timePosition, line.length() - 1);
-                    Deadline newDeadline = new Deadline(deadlineDescription, deadline);
-                    taskList.add(newDeadline);
+
+                if (substring[0].contains("[D]")) {
+                    String[] deadlineInfo = Parser.parseDeadline(substring[0]);
+                    new AddCommand("deadline", deadlineInfo[0], deadlineInfo[1]);
                 }
             }
+
             file.close();
-        } catch (IOException e) {
+
+        } catch (IOException | DukeException e) {
             e.printStackTrace();
         }
     }
