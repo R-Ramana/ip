@@ -27,9 +27,7 @@ public class ExceptionMessage {
         printHorizontalLine();
     }
 
-    public static void printIoExceptionMessage() {
-        printHorizontalLine();
-        System.out.println(" Error writing to file!");
-        printHorizontalLine();
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }

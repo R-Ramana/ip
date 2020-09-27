@@ -1,6 +1,6 @@
 package ip.task;
 
-public class Todo extends TaskManager {
+public class Todo extends Task {
 
     public Todo(String description) {
         super(description);

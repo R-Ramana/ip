@@ -1,6 +1,6 @@
 package ip.task;
 
-public class Deadline extends TaskManager {
+public class Deadline extends Task {
 
     protected String deadline;
 
@@ -11,6 +11,6 @@ public class Deadline extends TaskManager {
 
     @Override
     public String toString() {
-        return " [D]" + super.toString() + "(by: " + deadline + ")";
+        return " [D]" + super.toString() + "(by:" + deadline + ")";
     }
 }

@@ -1,12 +1,18 @@
 package ip.ui;
 
-import ip.filemanager.FileManager;
-import ip.task.Deadline;
+import ip.task.Task;
 import ip.task.TaskManager;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Ui {
+    // Read input
+    public String readInput(){
+        Scanner in = new Scanner(System.in);
+        return in.nextLine();
+    }
+
     // Horizontal line
     public static void printHorizontalLine() {
         final int LINE_COUNT = 60;
@@ -43,22 +49,22 @@ public class Ui {
         printHorizontalLine();
     }
 
-    public static void printAddTaskMessage(Task task, int taskCount) {
+    public static void printAddTaskMessage(Task task) {
         printHorizontalLine();
         System.out.println(" Got it. I've added this task:\n" + task + '\n');
-        System.out.println(" Now you have " + taskCount + " tasks in the list.");
+        System.out.println(" Now you have " + TaskManager.getTasksCount() + " tasks in the list.");
         printHorizontalLine();
     }
 
-    public void printListTasksMessage(TaskManager taskManager) {
+    public static void printListTasksMessage(Task taskManager) {
         printHorizontalLine();
         System.out.println(" Here are the tasks in your list:");
-        taskManager.listTasks();
+        TaskManager.listTasks();
         printHorizontalLine();
     }
 
     // Mark as done response
-    public static void printDoneMessage(TaskManager completedTask) {
+    public static void printDoneMessage(Task completedTask) {
         printHorizontalLine();
         System.out.println(" Nice! I've marked this task as done:\n " +
                 completedTask.toString());
@@ -66,11 +72,25 @@ public class Ui {
     }
 
     // Delete task
-    public static void printDeleteMessage(TaskManager deletedTask, ArrayList<TaskManager> taskList) {
+    public static void printDeleteMessage(Task deletedTask) {
         printHorizontalLine();
         System.out.println(" Noted. I've removed this task:\n " +
                 deletedTask.toString());
-        System.out.println("");
+        System.out.println(" Now you have " + TaskManager.getTasksCount() + " tasks in the list.");
+        printHorizontalLine();
+    }
+
+    // Find task
+    public static void printFilterTaskMessage(ArrayList<Task> taskList) {
+        printHorizontalLine();
+        if(taskList.isEmpty()) {
+            System.out.println(" Keyword returns no search result");
+        } else {
+            System.out.println(" Here are the matching tasks in your list:");
+            for (int i = 0; i < taskList.size(); i++) {
+                System.out.println(" " + (i+1) + "." + taskList.get(i).toString());
+            }
+        }
         printHorizontalLine();
     }
 

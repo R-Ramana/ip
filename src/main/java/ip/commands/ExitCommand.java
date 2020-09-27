@@ -1,9 +1,15 @@
 package ip.commands;
 
+import ip.ui.Ui;
+
 public class ExitCommand extends Command {
-    public static final String EXIT_COMMAND = "bye";
 
     public ExitCommand() {
         isExit = true;
+    }
+
+    @Override
+    public void execute(Ui ui) {
+        Ui.printFarewellMessage();
     }
 }

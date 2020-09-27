@@ -1,6 +1,6 @@
 package ip.task;
 
-public class Event extends TaskManager {
+public class Event extends Task {
 
     protected String startTime;
 
@@ -11,6 +11,6 @@ public class Event extends TaskManager {
 
     @Override
     public String toString() {
-        return " [E]" + super.toString() + "(at: " + startTime + ")";
+        return " [E]" + super.toString() + "(at:" + startTime + ")";
     }
 }
