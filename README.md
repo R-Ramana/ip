@@ -18,7 +18,7 @@ Prerequisites: JDK 11, update Intellij to the most recent version.
 1. After the importing is complete, locate the `src/main/java/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
    ```
     ____   ____    _____   _____   _    _ 
-   |  __| |  _ \\ |_   _| |_   _| | |  | |
+   |  __| |  _ \  |_   _| |_   _| | |  | |
    | |__  | | | |   | |     | |   | |__| |
    |  __| | | | |   | |     | |   |  __  |
    | |__  | |_| |  _| |_    | |   | |  | |
