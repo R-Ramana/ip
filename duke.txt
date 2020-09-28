@@ -1,3 +1,2 @@
 E | Y | CS2113 Tutorial | [Thu 2-4pm]
-D | N | submit TP direction on teammates | [Today]
-T | Y | read
+D | Y | submit TP direction on teammates | [Today]

@@ -15,6 +15,13 @@ public class FindCommand extends Command {
         this.keyword = keyword.toUpperCase();
     }
 
+    /**
+     * Calls the method to filter tasks that contain a keyword and returns that newly narrowed ArrayList
+     * Prints out the narrowed Task List
+     * Filters out to ensure no blank keyword is inputted
+     *
+     * @param ui User Interface Object
+     */
     @Override
     public void execute(Ui ui) {
 

@@ -2,12 +2,12 @@ package ip.ui.exception;
 
 import static ip.ui.Ui.printHorizontalLine;
 
+
+/**
+ * Information is printed out to the user on the command line when commands have NOT been successfully executed.
+ * Possible cause of error noted in the message
+ */
 public class ExceptionMessage {
-    public static void printInvalidExceptionMessage() {
-        printHorizontalLine();
-        System.out.println(" I am unable to understand your command! Please check for typos or try something else.");
-        printHorizontalLine();
-    }
 
     public static void printNoDescriptionExceptionMessage() {
         printHorizontalLine();

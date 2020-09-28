@@ -13,7 +13,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 
-
+/**
+ * Storage Class is where all methods related to files can be accessed from.
+ * File is accessed at teh beginning when Duke starts up and only for delete, done, add (e.g. deadline/event) commands
+ */
 public class Storage {
 
     private static String fileName;
@@ -22,23 +25,11 @@ public class Storage {
         Storage.fileName = fileName;
     }
 
-    // @@author {R-Ramana}-reused
-    // Reused from https://www.javatpoint.com/how-to-create-a-file-in-java with minor modifications
-    public static void createFile() throws IOException {
-        File file = new File(fileName);
-
-        try {
-            if (file.createNewFile()) {
-                System.out.println("File created at location: " + file.getCanonicalPath());
-            } else {
-                System.out.println("File updated. View file here: " + file.getCanonicalPath());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw e;
-        }
-    }
-
+    /**
+     * Method is called at the very beginning when Duke runs, if a file exists
+     * Reads inputs from the file line by line and adds the existing task and status.
+     * Acts like a local storage drive
+     */
     // @@author {R-Ramana}-reused
     // Reused from https://www.codejava.net/java-se/file-io/how-to-read-and-write-text-file-in-java with minor modifications
     public static void readFile() {
@@ -79,6 +70,19 @@ public class Storage {
         }
     }
 
+    /**
+     * Method is called when user adds a new task
+     * Method takes in the status, description, type, and time of the task to be added.
+     * Method appends new lines to the existing file
+     * Outputs in the form of TASK_TYPE (T/E/D) | STATUS (Y/N) | DESCRIPTION | DURATION
+     * e.g T | Y | Read Book
+     * e.g E | N | Tutorial | Today 2-4pm
+     *
+     * @param isDone Completed Status of task
+     * @param command Type of task to be added (e.g deadline, event)
+     * @param description Description of the task to be added
+     * @param duration Takes in vargs parameter (only applicable for deadline and event) of the end/start time
+     */
     // @@author {R-Ramana}-reused
     // Reused from https://www.codejava.net/java-se/file-io/how-to-read-and-write-text-file-in-java with minor modifications
     public static void writeToFile(Boolean isDone, char command, String description, String... duration) {
@@ -110,12 +114,22 @@ public class Storage {
 
     }
 
-    // Solution adapted from https://stackoverflow.com/questions/20039980/java-replace-line-in-text-filehttps://stackoverflow.com/questions/20039980/java-replace-line-in-text-file with minor modifications
+    /**
+     * Method is called when user requests to mark a particular task as done
+     * Method takes in the description of the task to be marked as done.
+     * duke.txt file is read line by line and is parsed into StringBuffer
+     * Replaces the status of the task found using the description
+     * Overwrites duke.txt
+     *
+     * @param description  Description of the task to be marked as done.
+     */
+    // Solution adapted from
+    // https://stackoverflow.com/questions/20039980/java-replace-line-in-text-filehttps://stackoverflow.com/questions/20039980/java-replace-line-in-text-file with minor modifications
     public static void replaceDoneStatus(String description) {
         try {
             BufferedReader file = new BufferedReader(new FileReader(fileName));
 
-            // input the file content from duke.txt to StringBuffer
+            // input the file content from duke.txt to StringBuffer so that the done status can be replaced
             StringBuffer inputBuffer = new StringBuffer();
             String line;
 
@@ -127,7 +141,6 @@ public class Storage {
             String inputStr = inputBuffer.toString();
             file.close();
 
-            // replace task in the string when to done status
             inputStr = inputStr.replace("| N |" + description, "| Y |" + description);
 
             // write the new string with the replaced line on the duke.txt file
@@ -142,7 +155,18 @@ public class Storage {
         }
     }
 
-    // Solution adapted from https://stackoverflow.com/questions/45211060/how-to-delete-or-remove-a-specific-line-from-a-text-filehttps://stackoverflow.com/questions/45211060/how-to-delete-or-remove-a-specific-line-from-a-text-file
+    /**
+     * Method is called when user requests to delete a particular task
+     * Method takes in the description of the task to be deleted.
+     * Creates a new temporary file called temp.txt
+     * Reads the lines from duke.txt, and copies it over to temp.txt
+     * If the line contains the description it replaces it with an empty String.
+     * Deletes duke.txt and renames temp.txt to duke.txt
+     *
+     * @param description  Description of the task to be deleted
+     */
+    // Solution adapted from
+    // https://stackoverflow.com/questions/45211060/how-to-delete-or-remove-a-specific-line-from-a-text-filehttps://stackoverflow.com/questions/45211060/how-to-delete-or-remove-a-specific-line-from-a-text-file
     public static void removeLine(String description) throws IOException{
         File tempFile = new File("temp.txt");
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(tempFile));
@@ -165,13 +189,17 @@ public class Storage {
         bufferedWriter.close();
         bufferedReader.close();
 
-        // Solution adapted from https://www.w3schools.com/java/java_files_delete.asphttps://www.w3schools.com/java/java_files_delete.asp
+        // Solution adapted from
+        // https://www.w3schools.com/java/java_files_delete.asphttps://www.w3schools.com/java/java_files_delete.asp
         File renameFile = new File("duke.txt");
         if (renameFile.delete()) {
             System.out.println("Deleted the file: " + renameFile.getName());
         }
 
         boolean rename = tempFile.renameTo(renameFile);
+        if(rename) {
+            System.out.println("Created and updated the file: " + renameFile.getName());
+        }
     }
 
 }

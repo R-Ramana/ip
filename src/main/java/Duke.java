@@ -1,15 +1,13 @@
 import ip.commands.Command;
-import ip.storage.Storage;
 import ip.parser.Parser;
-import ip.task.Task;
+import ip.storage.Storage;
 import ip.ui.Ui;
-import ip.ui.exception.ExceptionMessage;
 import ip.ui.exception.DukeException;
+import ip.ui.exception.ExceptionMessage;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 
 public class Duke {
 
@@ -23,7 +21,6 @@ public class Duke {
     private static final boolean FILE_EXISTS = Files.exists(Path.of(FILE_PATH));
 
     private static Ui ui;
-    private static ArrayList<Task> taskList;
 
     public static void main(String[] args) {
         Storage storage;
@@ -37,12 +34,17 @@ public class Duke {
             storage = new Storage(FILE_NAME);
         }
 
+
         ui = new Ui();
+        // Prints opening message on startup
         ui.printWelcomeMessage();
 
         boolean isExit = false;
 
-        // Runs until user inputs bye
+        /**
+         * Program runs until user inputs bye
+         * Otherwise user input is parsed and actions are executed accordingly with respect to the command
+         */
         while (!isExit) {
             try {
                 String fullCommand = ui.readInput();

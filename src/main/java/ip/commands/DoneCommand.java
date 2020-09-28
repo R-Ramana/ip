@@ -10,10 +10,21 @@ public class DoneCommand extends Command {
 
     private final int taskId;
 
+    /**
+     * Constructor to set Task ID
+     *
+     * @param taskId Task ID
+     */
     public DoneCommand(int taskId) {
         this.taskId = taskId;
     }
 
+    /**
+     * Checks to ensure ID is within the bounds
+     * If so, it marks the task as completed, update the file (duke.txt) and prints out a confirmation message.
+     *
+     * @param ui User Interface Object
+     */
     @Override
     public void execute(Ui ui) {
         Task task;

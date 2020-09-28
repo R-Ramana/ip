@@ -16,6 +16,12 @@ public class DeleteCommand extends Command {
         this.num = num;
     }
 
+    /**
+     * Checks to ensure ID is within the bounds
+     * If so, removes the task, updates the file (duke.txt) and prints out a confirmation message.
+     *
+     * @param ui User Interface object
+     */
     @Override
     public void execute(Ui ui) {
         Task task;

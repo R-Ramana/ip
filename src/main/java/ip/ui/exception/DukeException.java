@@ -1,5 +1,10 @@
 package ip.ui.exception;
 
+/**
+ * Exception class called when exception is caught. Returns the error message thrown (String)
+ *
+ * @return Error Message
+ */
 public class DukeException extends Exception {
     private String error;
 
