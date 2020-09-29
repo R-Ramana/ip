@@ -1,14 +1,22 @@
 # User Guide
 
-## Introduction
+## Table of Contents
+[1. Introduction](#intro)<br>
+[2. Setting Up](#setup)<br>
+[3. Features](#features)<br>
+[4. Usage](#usage)<br>
+[5. Command Summary](#summary)
+
+
+## <a name="intro">1. Introduction</a>
 Edith is a command line based task manager. Mainly there are 3 classes of tasks (todo, deadline and event). Tasks can be marked as completed, deleted and searched for by inputting a keyword. The details of the tasks are also recorded and stored in a text file called Duke.txt.
 
-## Setting Up
+## <a name="setup">2. Setting Up</a>
 Please refer to the [setting up guide](https://github.com/R-Ramana/ip/blob/master/README.md) for detailed instructions to set up the project on IntelliJ.
 
-## Features 
+## <a name="features">3. Features</a> 
 
-### Add A Task
+### Add Task
 As mentioned previously, there are 3 types of tasks:
 
 `deadline`
@@ -34,7 +42,7 @@ Task ID and description of task (includes the time for `deadline` and `event`)
 ### Delete Task
 Delete one task at a time. Removes task from the local memory as well.
 
-### Mark Task as Completed
+### Mark Task as Done
 Mark one task as completed at a time. All tasks can be marked as done.
 
 ### Find Task(s)
@@ -44,7 +52,7 @@ Search for task(s) by entering a keyword.
 Stops running the program.
 
 
-## Usage
+## <a name="usage">4. Usage</a>
 
 ### `todo` - Add todo
 
@@ -197,3 +205,16 @@ Expected outcome:
 ```
  Bye. I hope I have helped you. See you soon!
 ```
+
+
+## <a name="summary">5. Command Summary</a>
+Target Action | Example Code
+------------  | -------------
+Add todo | `tdo read Java coding standards`
+Add event | `event CS2113 Tutorial /at Thursday 2-4pm`
+Add deadline | `deadline complete ip /by Friday`
+List tasks | `list`
+Mark task as done | `done 2`
+Delete task | `delete 1`
+Find task | `find ip`
+Exit program | `bye`
