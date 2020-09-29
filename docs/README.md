@@ -17,15 +17,6 @@ As mentioned previously, there are 3 types of tasks:
 
 Add one task at a go. The `deadline` and `event` tasks need to have the time specified.
 
-### Delete A Task
-Delete one task at a time. Removes task from the local memory as well.
-
-### Mark Task as Completed
-Mark one task as completed at a time. All tasks can be marked as done.
-
-### Find Task(s)
-Search for task(s) by entering a keyword.
-
 ### List Task(s)
 Displays a list of all existing tasks. The following information will be provided
 
@@ -35,10 +26,19 @@ Task type:
 `D` - deadline
 
 Status:
-Tick - if task is marked as done
-Cross - if task is incomplete
+✓ - Task is marked as done
+✘ - Task is incomplete
 
-Description of task (includes the time for `deadline` and `event`)
+Task ID and description of task (includes the time for `deadline` and `event`)
+
+### Delete Task
+Delete one task at a time. Removes task from the local memory as well.
+
+### Mark Task as Completed
+Mark one task as completed at a time. All tasks can be marked as done.
+
+### Find Task(s)
+Search for task(s) by entering a keyword.
 
 ### Exit Program
 Stops running the program.
@@ -46,14 +46,154 @@ Stops running the program.
 
 ## Usage
 
-### `Keyword` - Describe action
+### `todo` - Add todo
 
-Describe action and its outcome.
+Adds a todo task.
+
+Format:
+
+`todo TASK_DESCRIPTION`
 
 Example of usage: 
 
-`keyword (optional arguments)`
+`todo read Java coding standards`
 
 Expected outcome:
 
-`outcome`
+```
+Got it. I've added this task:
+[T][✘] read Java coding standards
+
+Now you have 1 tasks in the list.
+```
+
+### `event` - Add event
+
+Adds an event task.
+
+Format:
+
+`event TASK_DESCRIPTION /at START_TIME`
+
+Example of usage: 
+
+`event CS2113 Tutorial /at Thursday 2-4pm`
+
+Expected outcome:
+
+```
+Got it. I've added this task:
+[E][✘] CS2113 Tutorial (at: Thursday 2-4pm)
+
+Now you have 2 tasks in the list.
+```
+
+### `deadline` - Add deadline
+
+Adds a deadline task.
+
+Format:
+
+`deadline TASK_DESCRIPTION /by END_TIME`
+
+Example of usage: 
+
+`deadline complete ip /by Friday`
+
+Expected outcome:
+
+```
+Got it. I've added this task:
+[D][✘] complete ip (by: Friday)
+
+Now you have 3 tasks in the list.
+```
+
+### `list` - List all tasks
+
+Removes any specified task. The corresponding task ID must be specified. The task ID can be obtained by the `list` command.
+
+Example of usage: 
+
+`list`
+
+Expected outcome:
+
+```
+Here are the tasks in your list:
+ 1. [T][✘]  read Java coding standards
+ 2. [E][✘]  CS2113 Tutorial  (at: [Thursday 2-4pm])
+ 3. [D][✘]  complete ip  (by: [Friday])
+```
+
+### `delete` - Delete Task
+
+Removes any specified task. The corresponding task ID (e.g. 1, 2, 3...) must be specified. The task ID can be obtained by the `list` command.
+
+Format:
+
+`delete TASK_ID`
+
+Example of usage: 
+
+`delete 2`
+
+Expected outcome:
+
+```
+ Noted. I've removed this task:
+  [E][✘]  CS2113 Tutorial  (at: [Thursday 2-4pm])
+ Now you have 2 tasks in the list.
+```
+
+### `done` - Mark task as completed
+
+Marks any specified task as completed. The corresponding task ID (e.g. 1, 2, 3...) must be specified. The task ID can be obtained by the `list` command.
+
+Format:
+
+`done TASK_ID`
+
+Example of usage: 
+
+`done 1`
+
+Expected outcome:
+
+```
+  Nice! I've marked this task as done:
+   [T][✓]  read Java coding standards
+```
+
+### `find` - Find tasks
+
+Narrow the search for particular tasks. A keyword has to be entered.
+
+Format:
+
+`find KEYWORD`
+
+Example of usage: 
+
+`find ip`
+
+Expected outcome:
+
+```
+  Here are the matching tasks in your list:
+ 1. [D][✘]  complete ip  (by: [Friday])
+```
+
+### `exit` - Exit the program
+
+Application ends. User has successfully terminated the running of program.
+
+Example of usage: 
+
+`bye`
+
+Expected outcome:
+
+```
+ Bye. I hope I have helped you. See you soon!
+```
