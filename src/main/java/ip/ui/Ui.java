@@ -20,7 +20,7 @@ public class Ui {
     // Prints Horizontal lines of length = LINE_COUNT
     public static void printHorizontalLine() {
         final int LINE_COUNT = 60;
-        String line = "-".repeat(LINE_COUNT);
+        String line = "_".repeat(LINE_COUNT);
         System.out.println(line);
     }
 

@@ -12,54 +12,59 @@ ____________________________________________________________
  ____________________________________________________________
 
   Got it. I've added this task:
-  [E][✘] project meeting (at: Mon 2-4pm)
+  [E][✘] CS2113 Tutorial (at: [Thursday 2-4pm])
 
  Now you have 1 tasks in the list.
  ____________________________________________________________
  ____________________________________________________________
 
   Got it. I've added this task:
-  [D][✘] return book (by: Sunday)
+  [D][✘] complete ip (by: [Friday])
 
  Now you have 2 tasks in the list.
  ____________________________________________________________
  ____________________________________________________________
 
   Got it. I've added this task:
-  [T][✘] borrow book
+  [T][✘] read Java coding standards
 
  Now you have 3 tasks in the list.
  ____________________________________________________________
  ____________________________________________________________
 
   Here are tasks in your list:
-  1.  [E][✘] project meeting (at: Mon 2-4pm)
-  2.  [D][✘] return book (by: Sunday)
-  3.  [T][✘] borrow book
+  1.  [E][✘] CS2113 Tutorial (at: [Thursday 2-4pm])
+  2.  [D][✘] complete ip (by: [Friday])
+  3.  [T][✘] read Java coding standards
  ____________________________________________________________
  ____________________________________________________________
 
   Nice! I've marked this task as done:
-   [T][✓] borrow book
+   [T][✓] read Java coding standards
  ____________________________________________________________
  ____________________________________________________________
 
   Here are tasks in your list:
-  1.  [E][✘] project meeting (at: Mon 2-4pm)
-  2.  [D][✘] return book (by: Sunday)
-  3.  [T][✓] borrow book
+  1.  [E][✘] CS2113 Tutorial (at: [Thursday 2-4pm])
+  2.  [D][✘] complete ip (by: [Friday])
+  3.  [T][✓] read Java coding standards
  ____________________________________________________________
  ____________________________________________________________
 
   Noted. I've removed this task:
-   [E][✘] project meeting (at: Mon 2-4pm)
+   [E][✘] CS2113 Tutorial (at: [Thursday 2-4pm])
   Now you have 2 tasks in the list.
  ____________________________________________________________
  ____________________________________________________________
 
   Here are tasks in your list:
-  1.  [D][✘] return book (by: Sunday)
-  2.  [T][✓] borrow book
+  1.  [D][✘] complete ip (by: [Friday])
+  2.  [T][✓] read Java coding standards
+ ____________________________________________________________
+
+ ____________________________________________________________
+ Here are the matching tasks in your list:
+ 1. [T][✓] read Java coding standards
  ____________________________________________________________
  ____________________________________________________________
   Bye. I hope I have helped you. See you soon!
