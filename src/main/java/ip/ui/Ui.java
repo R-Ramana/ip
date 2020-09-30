@@ -11,14 +11,14 @@ import java.util.Scanner;
  */
 public class Ui {
 
+    private static final Scanner INPUT = new Scanner(System.in);
     /**
      * Creates a scanner to read and return user input
      *
      * @return in.nexLine() user input
      */
     public String readInput(){
-        Scanner in = new Scanner(System.in);
-        return in.nextLine();
+        return INPUT.nextLine();
     }
 
     /**

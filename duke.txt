@@ -1,2 +1,0 @@
-T | Y | hello
-T | Y | read
