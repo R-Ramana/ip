@@ -47,23 +47,25 @@ public class Storage {
             Task task;
 
             while ((line = bufferedReader.readLine()) != null) {
-                String[] fileLines = line.split("\\|");
+                String[] fileLines = line.split("\\| ");
+                String taskType = fileLines[0].strip();
+                String doneStatus = fileLines[1].strip();
 
-                switch (fileLines[0]) {
-                case "T ":
+                switch (taskType) {
+                case "T":
                     task = TaskManager.addTodo(fileLines[2]);
                     break;
-                case "D ":
+                case "D":
                     task = TaskManager.addDeadline(fileLines[2], fileLines[3]);
                     break;
-                case "E ":
+                case "E":
                     task = TaskManager.addEvent(fileLines[2], fileLines[3]);
                     break;
                 default:
                     throw new DukeException("Cannot read file");
                 }
 
-                if (fileLines[1].equals(" Y ")) {
+                if (doneStatus.contains("Y")) {
                     task.markAsDone();
                 }
             }
@@ -146,7 +148,7 @@ public class Storage {
             String inputStr = inputBuffer.toString();
             file.close();
 
-            inputStr = inputStr.replace("| N |" + description, "| Y |" + description);
+            inputStr = inputStr.replace("| N | " + description, "| Y | " + description);
 
             // write the new string with the replaced line on the duke.txt file
             FileWriter writer = new FileWriter(fileName);
