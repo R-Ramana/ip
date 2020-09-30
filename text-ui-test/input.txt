@@ -1,9 +1,10 @@
 event CS2113 Tutorial /at Thu 2-4pm
-deadline submit TP direction on teammates /by Today
-todo borrow book
+deadline complete ip /by Friday
+todo read Java coding standards
 list
 done 3
 list
 delete 1
 list
+find read
 bye

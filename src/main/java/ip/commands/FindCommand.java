@@ -25,8 +25,8 @@ public class FindCommand extends Command {
     @Override
     public void execute(Ui ui) {
 
-        // Ensure no blank keyword
-        if(keyword == "") {
+        // Ensure no blank keyword when finding for Tasks
+        if(keyword.isBlank()) {
             ExceptionMessage.printNoDescriptionExceptionMessage();
             return;
         }
