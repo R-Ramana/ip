@@ -22,6 +22,13 @@ public class Duke {
 
     private static Ui ui;
 
+    /**
+     * Checks if duke.txt exists and reads from the file
+     * Otherwise program creates a new file called duke.txt
+     *
+     * Program runs until user inputs bye
+     * Otherwise user input is parsed and actions are executed accordingly with respect to the command
+     */
     public static void main(String[] args) {
         Storage storage;
 
@@ -41,10 +48,6 @@ public class Duke {
 
         boolean isExit = false;
 
-        /**
-         * Program runs until user inputs bye
-         * Otherwise user input is parsed and actions are executed accordingly with respect to the command
-         */
         while (!isExit) {
             try {
                 String fullCommand = ui.readInput();

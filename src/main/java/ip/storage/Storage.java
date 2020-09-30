@@ -21,6 +21,11 @@ public class Storage {
 
     private static String fileName;
 
+    /**
+     * Constructor
+     *
+     * @param fileName Name of file that is used for storage
+     */
     public Storage(String fileName) {
         Storage.fileName = fileName;
     }
