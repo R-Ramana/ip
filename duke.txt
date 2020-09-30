@@ -1,0 +1,3 @@
+T | N | read
+T | N | hello
+T | Y | Wira
