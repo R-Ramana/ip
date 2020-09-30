@@ -1,2 +1,2 @@
-T | N | hello
-T | N | read
+T | Y | hello
+T | Y | read
