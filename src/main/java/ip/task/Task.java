@@ -1,10 +1,13 @@
 package ip.task;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 
 public class Task {
-    // Tick and cross symbols
-    public final static String tick = "[✓]";
-    public final static String cross = "[✘]";
+    // Yes and No character representation for isDone status
+    public final static String IS_DONE_YES = "[Y]";
+    public final static String IS_DONE_NO = "[N]";
 
     protected String description;
     protected boolean isDone;
@@ -47,7 +50,7 @@ public class Task {
      * @return a String representation of tick/cross
      */
     public String getStatusIcon() {
-        return (isDone ? tick : cross);
+        return (isDone ? IS_DONE_YES : IS_DONE_NO);
     }
 
     /**

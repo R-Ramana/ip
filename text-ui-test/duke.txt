@@ -1,2 +1,2 @@
-E | N | CS2113 Tutorial | [Thu 2-4pm]
-E | N | CS2113 Tutorial | [Thu 2-4pm]
+D | N | complete ip | [Friday]
+T | Y | read Java coding standards

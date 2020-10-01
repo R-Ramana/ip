@@ -44,7 +44,7 @@ public class Parser {
         String[] userInputWords = userInput.split(" ", 2);
         String command = userInputWords[0];
 
-        int taskId;
+        int taskId = 0;
 
         switch (command) {
         case LIST_COMMAND:
@@ -62,11 +62,19 @@ public class Parser {
             time = parseTime(userInput);
             return new AddCommand('D', deadlineInfo[0], deadlineInfo[1], date, time);
         case DELETE_COMMAND:
-            taskId = getTaskId(userInputWords[1]);
-            return new DeleteCommand(taskId);
+            if(userInputWords.length < 2) {
+                throw new DukeException("Enter a number. Cannot delete task.");
+            } else {
+                taskId = getTaskId(userInputWords[1]);
+                return new DeleteCommand(taskId);
+            }
         case DONE_COMMAND:
-            taskId = getTaskId(userInputWords[1]);
-            return new DoneCommand(taskId);
+            if(userInputWords.length < 2) {
+                throw new DukeException("Enter a number. Cannot mark task as done.");
+            } else {
+                taskId = getTaskId(userInputWords[1]);
+                return new DoneCommand(taskId);
+            }
         case FIND_COMMAND:
             String keyword = userInputWords[1];
             return new FindCommand(keyword);
