@@ -130,7 +130,7 @@ public class Parser {
     /**
      * Method takes in user input.
      * Checks if there is a date parameter
-     * Returns a LocalDate containing the date.
+     * Returns a LocalDate.
      *
      * @param userInput Takes in userInput
      * @return date of the task
@@ -152,7 +152,7 @@ public class Parser {
     /**
      * Method takes in user input.
      * Checks if there is a time parameter
-     * Returns a LocalTime containing the date.
+     * Returns a LocalTime.
      *
      * @param userInput Takes in userInput
      * @return time of the task

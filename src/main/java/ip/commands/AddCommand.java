@@ -50,6 +50,7 @@ public class AddCommand extends Command {
      * Based on command [T, D, E], add a todo, deadline or event (Refer to TaskManager Class)
      * Updates the duke.txt file (refer ti Storage Class)
      * Prints confirmation message that the task has been added
+     * Deadline and Event cases formats date and time if it was inputted by the user.
      *
      * @param ui User Interface Object
      * @throws DukeException if invalid command
