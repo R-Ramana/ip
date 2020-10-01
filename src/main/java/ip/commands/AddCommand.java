@@ -6,23 +6,32 @@ import ip.task.TaskManager;
 import ip.ui.Ui;
 import ip.ui.exception.DukeException;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 public class AddCommand extends Command {
-    private final char command;
-    private final String description;
+    private char command;
+    private String description;
     private String duration;
+    private LocalDate date;
+    private LocalTime time;
 
     /**
      * Takes in a char for command (D for deadline and E for Event)
-     * Sets the command, description and time.
+     * Sets the command, description, date and time.
      *
      * @param command D, E to distinguish what type of task to add
      * @param description Task description
-     * @param duration Start Time if E and End Time if D
+     * @param date task deadline/start date (might be null)
+     * @param time task deadline/start time (might be null)
      */
-    public AddCommand(char command, String description, String duration) {
+    public AddCommand(char command, String description, String duration, LocalDate date, LocalTime time) {
         this.command = command;
         this.description = description;
         this.duration = duration;
+        this.date = date;
+        this.time = time;
     }
 
     /**
@@ -56,12 +65,24 @@ public class AddCommand extends Command {
             Storage.writeToFile(task.getIsDone(), command, description);
             break;
         case 'D':
-            task = TaskManager.addDeadline(description, duration);
-            Storage.writeToFile(task.getIsDone(), command, description, duration);
+            String updatedDuration = duration;
+            if(date != null && time != null ) {
+                String updatedDate = date.format(DateTimeFormatter.ofPattern("MMM dd, YYYY"));
+                String updatedTime = time.format(DateTimeFormatter.ISO_LOCAL_TIME);
+                updatedDuration = updatedDate + " " + updatedTime;
+            }
+            task = TaskManager.addDeadline(description, updatedDuration);
+            Storage.writeToFile(task.getIsDone(), command, description, updatedDuration);
             break;
         case 'E':
-            task = TaskManager.addEvent(description, duration);
-            Storage.writeToFile(task.getIsDone(), command, description, duration);
+            updatedDuration = duration;
+            if(date != null && time != null ) {
+                String updatedDate = date.format(DateTimeFormatter.ofPattern("MMM dd, YYYY"));
+                String updatedTime = time.format(DateTimeFormatter.ISO_LOCAL_TIME);
+                updatedDuration = updatedDate + " " + updatedTime;
+            }
+            task = TaskManager.addEvent(description, updatedDuration);
+            Storage.writeToFile(task.getIsDone(), command, description, updatedDuration);
             break;
         default:
             throw new DukeException("Invalid command. Please try again!");

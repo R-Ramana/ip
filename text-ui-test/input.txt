@@ -1,4 +1,4 @@
-event CS2113 Tutorial /at Thu 2-4pm
+event CS2113 Tutorial /at 2020-10-01 13:00
 deadline complete ip /by Friday
 todo read Java coding standards
 list
