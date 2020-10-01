@@ -7,8 +7,14 @@ import ip.commands.DoneCommand;
 import ip.commands.ExitCommand;
 import ip.commands.FindCommand;
 import ip.commands.ListCommand;
+
 import ip.ui.exception.DukeException;
 import ip.ui.exception.ExceptionMessage;
+
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+
 
 public class Parser {
 
@@ -47,10 +53,14 @@ public class Parser {
             return new AddCommand('T', userInputWords[1]);
         case EVENT_COMMAND:
             String[] eventInfo = parseEvent(userInputWords[1]);
-            return new AddCommand('E', eventInfo[0], eventInfo[1]);
+            LocalDate date = parseDate(userInput);
+            LocalTime time = parseTime(userInput);
+            return new AddCommand('E', eventInfo[0], eventInfo[1], date, time);
         case DEADLINE_COMMAND:
             String[] deadlineInfo = parseDeadline(userInputWords[1]);
-            return new AddCommand('D', deadlineInfo[0], deadlineInfo[1]);
+            date = parseDate(userInput);
+            time = parseTime(userInput);
+            return new AddCommand('D', deadlineInfo[0], deadlineInfo[1], date, time);
         case DELETE_COMMAND:
             taskId = getTaskId(userInputWords[1]);
             return new DeleteCommand(taskId);
@@ -110,13 +120,59 @@ public class Parser {
     }
 
     /**
+     * Method takes in user input.
+     * Checks if there is a date parameter
+     * Returns a LocalDate containing the date.
+     *
+     * @param userInput Takes in userInput
+     * @return date of the task
+     */
+    public static LocalDate parseDate(String userInput) {
+        String[] info = userInput.split(" ");
+        LocalDate date = null;
+
+        for (String s : info) {
+            try {
+                date = LocalDate.parse(s);
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+
+        return date;
+    }
+
+    /**
+     * Method takes in user input.
+     * Checks if there is a time parameter
+     * Returns a LocalTime containing the date.
+     *
+     * @param userInput Takes in userInput
+     * @return time of the task
+     */
+    public static LocalTime parseTime(String userInput) {
+        String[] info = userInput.split(" ");
+        LocalTime time = null;
+
+        for (String s : info) {
+            try {
+                time = LocalTime.parse(s);
+            } catch (DateTimeParseException ignored) {
+            }
+        }
+
+        return time;
+    }
+
+
+
+    /**
      * Takes in the String after the command word when done/delete command is entered.
      * Converts String to an Integer type and returns the Integer value.
      *
      * @param taskNumber
      * @return Task ID of the task to be deleted/marked as done
      */
-    private static Integer getTaskId (String taskNumber) {
+    private static int getTaskId(String taskNumber) {
         int taskId = 0;
 
         try {
