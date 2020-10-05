@@ -85,13 +85,15 @@ Format:
 
 Example of usage: 
 
-`event CS2113 Tutorial /at Thursday 2-4pm`
+`event CS2113 Tutorial /at 2020-10-01 13:00`
+
+:bulb: <b>Tip: Input START_TIME with the following format - YYYY-MM-DD HH:MM</b>
 
 Expected outcome:
 
 ```
 Got it. I've added this task:
-[E][✘] CS2113 Tutorial (at: Thursday 2-4pm)
+[E][✘] CS2113 Tutorial (at: Oct 01, 2020 13:00:00)
 
 Now you have 2 tasks in the list.
 ```
@@ -107,6 +109,8 @@ Format:
 Example of usage: 
 
 `deadline complete ip /by Friday`
+
+:bulb: <b>Tip: Input END_TIME with the following format - YYYY-MM-DD HH:MM</b>
 
 Expected outcome:
 
@@ -130,8 +134,8 @@ Expected outcome:
 ```
 Here are the tasks in your list:
  1. [T][✘]  read Java coding standards
- 2. [E][✘]  CS2113 Tutorial  (at: [Thursday 2-4pm])
- 3. [D][✘]  complete ip  (by: [Friday])
+ 2. [E][✘]  CS2113 Tutorial  (at: Oct 01, 2020 13:00:00)
+ 3. [D][✘]  complete ip  (by: Friday)
 ```
 
 ### `delete` - Delete Task
@@ -150,7 +154,7 @@ Expected outcome:
 
 ```
  Noted. I've removed this task:
-  [E][✘]  CS2113 Tutorial  (at: [Thursday 2-4pm])
+  [E][✘]  CS2113 Tutorial  (at: Oct 01, 2020 13:00:00)
  Now you have 2 tasks in the list.
 ```
 
@@ -189,7 +193,7 @@ Expected outcome:
 
 ```
   Here are the matching tasks in your list:
- 1. [D][✘]  complete ip  (by: [Friday])
+ 1. [D][✘]  complete ip  (by: Friday)
 ```
 
 ### `exit` - Exit the program
@@ -210,8 +214,8 @@ Expected outcome:
 ## <a name="summary">5. Command Summary</a>
 Target Action | Example Code
 ------------  | -------------
-Add todo | `tdo read Java coding standards`
-Add event | `event CS2113 Tutorial /at Thursday 2-4pm`
+Add todo | `todo read Java coding standards`
+Add event | `event CS2113 Tutorial /at 2020-10-01 13:00`
 Add deadline | `deadline complete ip /by Friday`
 List tasks | `list`
 Mark task as done | `done 2`
