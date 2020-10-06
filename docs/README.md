@@ -11,6 +11,8 @@
 ## <a name="intro">1. Introduction</a>
 Edith is a command line based task manager. Mainly there are 3 classes of tasks (todo, deadline and event). Tasks can be marked as completed, deleted and searched for by inputting a keyword. The details of the tasks are also recorded and stored in a text file called Duke.txt.
 
+You can download the jar file [here](https://github.com/R-Ramana/ip/releases/tag/A-Jar).
+
 ## <a name="setup">2. Setting Up</a>
 Please refer to the [setting up guide](https://github.com/R-Ramana/ip/blob/master/README.md) for detailed instructions to set up the project on IntelliJ.
 
