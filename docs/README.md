@@ -34,8 +34,8 @@ Task type:
 `D` - deadline
 
 Status:
-✓ - Task is marked as done
-✘ - Task is incomplete
+Y - Task is marked as done
+N - Task is incomplete
 
 Task ID and description of task (includes the time for `deadline` and `event`)
 
@@ -70,7 +70,7 @@ Expected outcome:
 
 ```
 Got it. I've added this task:
-[T][✘] read Java coding standards
+[T][N] read Java coding standards
 
 Now you have 1 tasks in the list.
 ```
@@ -93,7 +93,7 @@ Expected outcome:
 
 ```
 Got it. I've added this task:
-[E][✘] CS2113 Tutorial (at: Oct 01, 2020 13:00:00)
+[E][N] CS2113 Tutorial (at: Oct 01, 2020 13:00:00)
 
 Now you have 2 tasks in the list.
 ```
@@ -116,7 +116,7 @@ Expected outcome:
 
 ```
 Got it. I've added this task:
-[D][✘] complete ip (by: Friday)
+[D][N] complete ip (by: Friday)
 
 Now you have 3 tasks in the list.
 ```
@@ -133,9 +133,9 @@ Expected outcome:
 
 ```
 Here are the tasks in your list:
- 1. [T][✘]  read Java coding standards
- 2. [E][✘]  CS2113 Tutorial  (at: Oct 01, 2020 13:00:00)
- 3. [D][✘]  complete ip  (by: Friday)
+ 1. [T][N]  read Java coding standards
+ 2. [E][N]  CS2113 Tutorial  (at: Oct 01, 2020 13:00:00)
+ 3. [D][N]  complete ip  (by: Friday)
 ```
 
 ### `delete` - Delete Task
@@ -154,7 +154,7 @@ Expected outcome:
 
 ```
  Noted. I've removed this task:
-  [E][✘]  CS2113 Tutorial  (at: Oct 01, 2020 13:00:00)
+  [E][N]  CS2113 Tutorial  (at: Oct 01, 2020 13:00:00)
  Now you have 2 tasks in the list.
 ```
 
@@ -174,7 +174,7 @@ Expected outcome:
 
 ```
   Nice! I've marked this task as done:
-   [T][✓]  read Java coding standards
+   [T][Y]  read Java coding standards
 ```
 
 ### `find` - Find tasks
@@ -193,7 +193,7 @@ Expected outcome:
 
 ```
   Here are the matching tasks in your list:
- 1. [D][✘]  complete ip  (by: Friday)
+ 1. [D][Y]  complete ip  (by: Friday)
 ```
 
 ### `exit` - Exit the program
