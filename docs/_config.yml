@@ -1,2 +1,4 @@
 theme: jekyll-theme-architect
 markdown: GFM
+plugins:
+  - jemoji
